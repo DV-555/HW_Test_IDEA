@@ -24,7 +24,16 @@ public class Main {
     SUMMER,
     AUTUMN,
   }
-public static void main(String[] args) {
+  public static Season monthToSeason(Month month) {
+    return switch (month) {
+      case DECEMBER, JANUARY, FEBRUARY -> Season.WINTER;
+      case MARCH, APRIL, MAY -> Season.SPRING;
+      case JUNE, JULY, AUGUST -> Season.SUMMER;
+      case SEPTEMBER, OCTOBER, NOVEMBER -> Season.AUTUMN;
+    };
+  }
+
+  public static void main(String[] args) {
     // в программе созданный enum можно использовать, как новый класс - как новый тип переменной
     // (как int, String и т.д.)
     Map<Month, Integer> daysPerMonth = new HashMap<>();
@@ -50,6 +59,7 @@ public static void main(String[] args) {
     Month monthKey = Month.valueOf(month.toUpperCase()); // месяц "как ключ словаря"
     // enum.ordinal() возвращает индекс значения в перечислении
     System.out.println(month + " has " + daysPerMonth.get(monthKey) + " days");
+    System.out.println("Month " + month + " is a Season " + monthToSeason(monthKey));
 
     //May
     //May has 31 days
